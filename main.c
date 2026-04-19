@@ -23,7 +23,6 @@
 #include <string.h>
 
 #define PI 3.14159265358979323846
-#define MAX_MAT 10
 
 /* =============== PROTOTIPOS DE FUNCIONES =============== */
 void menu();
@@ -37,10 +36,10 @@ void registros();
 
 void separador();
 void limpiar_buffer();
-long determinante_recursivo(int n, int mat[MAX_MAT][MAX_MAT]);
+long determinante_recursivo(int n, int mat[n][n]);
 
-    /* =============== FUNCION PRINCIPAL =============== */
-    int main()
+/* =============== FUNCION PRINCIPAL =============== */
+int main()
 {
     menu();
     printf("\n");

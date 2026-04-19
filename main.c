@@ -183,20 +183,20 @@ void funciones_trigonometricas(){
     switch(operacion){
         case 1:
             resultado = sin(angulo);
-            printf("Seno(%.2lf) = %.2lf\n", angulo * (180 / M_PI), resultado);
+            printf("Seno(%.2lf) = %.2lf\n", angulo * (180 / PI), resultado);
             break;
         case 2:
             resultado = cos(angulo);
-            printf("Coseno(%.2lf) = %.2lf\n", angulo * (180 / M_PI), resultado);
+            printf("Coseno(%.2lf) = %.2lf\n", angulo * (180 / PI), resultado);
             break;
         case 3:
             resultado = tan(angulo);
-            printf("Tangente(%.2lf) = %.2lf\n", angulo * (180 / M_PI), resultado);
+            printf("Tangente(%.2lf) = %.2lf\n", angulo * (180 / PI), resultado);
             break;
         case 4:
             if(tan(angulo) != 0){
                 resultado = 1 / tan(angulo);
-                printf("Cotangente(%.2lf) = %.2lf\n", angulo * (180 / M_PI), resultado);
+                printf("Cotangente(%.2lf) = %.2lf\n", angulo * (180 / PI), resultado);
             }else{
                 printf("Error: La cotangente no esta definida para este angulo.\n");
             }
@@ -204,7 +204,7 @@ void funciones_trigonometricas(){
         case 5:
             if(cos(angulo) != 0){
                 resultado = 1 / cos(angulo);
-                printf("Secante(%.2lf) = %.2lf\n", angulo * (180 / M_PI), resultado);
+                printf("Secante(%.2lf) = %.2lf\n", angulo * (180 / PI), resultado);
             }else{
                 printf("Error: La secante no esta definida para este angulo.\n");
             }
@@ -212,7 +212,7 @@ void funciones_trigonometricas(){
         case 6:
             if(sin(angulo) != 0){
                 resultado = 1 / sin(angulo);
-                printf("Cosecante(%.2lf) = %.2lf\n", angulo * (180 / M_PI), resultado);
+                printf("Cosecante(%.2lf) = %.2lf\n", angulo * (180 / PI), resultado);
             }else{
                 printf("Error: La cosecante no esta definida para este angulo.\n");
             }

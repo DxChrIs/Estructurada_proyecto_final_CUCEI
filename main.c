@@ -23,7 +23,7 @@
 #include <string.h>
 #include <conio.h>
 
-#define M_PI 3.14159265358979323846
+#define PI 3.14159265358979323846
 
 void menu();
 void operaciones_basicas();
@@ -79,9 +79,11 @@ void menu(){
                 break;
             case 6:
                 // Llamar a la función de matrices
+                matrices();
                 break;
             case 7:
                 // Llamar a la función de registros
+                registros();
                 break;
             case 8:
                 printf("Saliendo del programa...\nHasta Pronto!!\n");
@@ -166,7 +168,7 @@ void funciones_trigonometricas(){
     printf("Ingrese el angulo en grados: ");
     scanf("%lf", &angulo);
     // Convertir el angulo a radianes
-    angulo = angulo * (M_PI / 180);
+    angulo = angulo * (PI / 180);
     printf("Seleccione la funcion trigonometrica a calcular:\n");
     printf("1. Seno\n");
     printf("2. Coseno\n");
@@ -358,6 +360,173 @@ void instrucciones_repetitivas(){
 }
 
 void matrices(){
-    // Matrices: Operaciones basicas (Suma, resta, multiplicacion y division de matrices), ademas de calculo del determinante y la inversa de una matriz.
-    
+    // Matrices: Operaciones basicas (Suma, resta y multiplicacion de matrices), ademas de calculo del determinante y la inversa de una matriz.
+    int filas_1, columnas_1;
+    printf("Matrices\n");
+    printf("Ingresa el tama%co de la matriz 1 (filas y columnas): ", 164);
+    scanf("%d %d", &filas_1, &columnas_1);
+
+    int matriz_1[filas_1][columnas_1];
+    printf("Ingresa los elementos de la matriz 1:\n");
+    for(int i = 0; i < filas_1; i++){
+        for(int j = 0; j < columnas_1; j++){
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz_1[i][j]);
+        }
+    }
+
+    printf("Matriz 1:\n");
+    for(int i = 0; i < filas_1; i++){
+        for(int j = 0; j < columnas_1; j++){
+            printf("%d ", matriz_1[i][j]);
+        }
+        printf("\n");
+    }
+
+    int filas_2, columnas_2;
+    printf("Ingresa el tama%co de la matriz 2 (filas y columnas): ");
+    scanf("%d %d", &filas_2, &columnas_2);
+    int matriz_2[filas_2][columnas_2];
+    printf("Ingresa los elementos de la matriz 2:\n");
+    for(int i = 0; i < filas_2; i++){
+        for(int j = 0; j < columnas_2; j++){
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz_2[i][j]);
+        }
+    }
+    printf("Matriz 2:\n");
+    for(int i = 0; i < filas_2; i++){
+        for(int j = 0; j < columnas_2; j++){
+            printf("%d ", matriz_2[i][j]);
+        }
+        printf("\n");
+    }
+
+    int opciones;
+    printf("Seleccione la operacion a realizar con las matrices:\n");
+    printf("1. Suma\n");
+    printf("2. Resta\n");
+    printf("3. Multiplicacion\n");
+    printf("4. Calculo del Determinante\n");
+    printf("5. Volver al Menu Principal\n");
+    printf("Opcion: ");
+    scanf("%d", &opciones);
+
+    switch(opciones){
+        case 1:
+            if(filas_1 == filas_2 && columnas_1 == columnas_2){
+                int resultado[filas_1][columnas_1];
+                for(int i = 0; i < filas_1; i++){
+                    for(int j = 0; j < columnas_1; j++){
+                        resultado[i][j] = matriz_1[i][j] + matriz_2[i][j];
+                    }
+                }
+                printf("Resultado de la Suma:\n");
+                for(int i = 0; i < filas_1; i++){
+                    for(int j = 0; j < columnas_1; j++){
+                        printf("%d ", resultado[i][j]);
+                    }
+                    printf("\n");
+                }
+            }else{
+                printf("Error: Las matrices deben tener el mismo tamaño para realizar la suma.\n");
+            }
+            break;
+        case 2:
+            if(filas_1 == filas_2 && columnas_1 == columnas_2){
+                int resultado[filas_1][columnas_1];
+                for(int i = 0; i < filas_1; i++){
+                    for(int j = 0; j < columnas_1; j++){
+                        resultado[i][j] = matriz_1[i][j] - matriz_2[i][j];
+                    }
+                }
+                printf("Resultado de la Resta:\n");
+                for(int i = 0; i < filas_1; i++){
+                    for(int j = 0; j < columnas_1; j++){
+                        printf("%d ", resultado[i][j]);
+                    }
+                    printf("\n");
+                }
+            }else{
+                printf("Error: Las matrices deben tener el mismo tamaño para realizar la resta.\n");
+            }
+            break;
+        case 3:
+            if(columnas_1 == filas_2){
+                int resultado[filas_1][columnas_2];
+                for(int i = 0; i < filas_1; i++){
+                    for(int j = 0; j < columnas_2; j++){
+                        resultado[i][j] = 0;
+                        for(int k = 0; k < columnas_1; k++){
+                            resultado[i][j] += matriz_1[i][k] * matriz_2[k][j];
+                        }
+                    }
+                }
+                printf("Resultado de la Multiplicacion:\n");
+                for(int i = 0; i < filas_1; i++){
+                    for(int j = 0; j < columnas_2; j++){
+                        printf("%d ", resultado[i][j]);
+                    }
+                    printf("\n");
+                }
+            }else{
+                printf("Error: El numero de columnas de la matriz 1 debe ser igual al numero de filas de la matriz 2 para realizar la multiplicacion.\n");
+            }
+            break;
+        case 4:
+            if(filas_1 == columnas_1){
+                int determinante = matriz_1[0][0] * matriz_1[1][1] - matriz_1[0][1] * matriz_1[1][0];
+                printf("Determinante de la Matriz 1: %d\n", determinante);
+            }else{
+                printf("Error: La matriz debe ser cuadrada para calcular el determinante.\n");
+            }
+            break;
+        case 5:
+            printf("Volviendo al Menu Principal...\n");
+            break;
+        default:
+            printf("Opcion no valida, por favor intente nuevamente.\n");
+    }
+}
+
+void registros(){
+    // Registros: Definicion de estructuras, acceso a los miembros de una estructura, uso de punteros con estructuras, y ejemplos de estructuras anidadas.
+    struct Persona{
+        char nombre[50];
+        int edad;
+        float altura;
+    };
+
+    struct Pepe{
+        struct Persona persona2;
+    };
+
+    struct Persona persona1;
+    struct Pepe pepe1;
+    printf("Registros\n");
+    printf("Ingrese el nombre de la persona: ");
+    scanf("%s", persona1.nombre);
+    printf("Ingrese la edad de la persona: ");
+    scanf("%d", &persona1.edad);
+    printf("Ingrese la altura de la persona (en metros): ");
+    scanf("%f", &persona1.altura);
+    printf("Informacion de la Persona:\n");
+    printf("Nombre: %s\n", persona1.nombre);
+    printf("Edad: %d\n", persona1.edad);
+    printf("Altura: %.2f metros\n", persona1.altura);
+
+    int* edad_ptr = &persona1.edad;
+    printf("Edad a traves del puntero: %d\n", *edad_ptr);
+
+    char* nombre_ptr = persona1.nombre;
+    printf("Nombre a traves del puntero: %s\n", nombre_ptr);
+
+    float* altura_ptr = &persona1.altura;
+    printf("Altura a traves del puntero: %.2f metros\n", *altura_ptr);
+
+    pepe1.persona2 = persona1;
+    printf("Informacion de la Persona en Pepe:\n");
+    printf("Nombre: %s\n", pepe1.persona2.nombre);
+    printf("Edad: %d\n", pepe1.persona2.edad);
+    printf("Altura: %.2f metros\n", pepe1.persona2.altura);
 }
